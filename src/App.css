@@ -227,3 +227,26 @@ body {
   background: #ffb6c1 !important;
   color: white !important;
 }
+
+/* 캐릭터 배너 스타일 */
+.character-banner {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  text-align: center;
+  padding: 0 10px;
+}
+
+.banner-img {
+  width: 100%;       /* 가로 폭을 화면에 꽉 채움 */
+  max-width: 500px;  /* 너무 커지지 않게 제한 */
+  height: auto;      /* 비율에 맞춰 높이 자동 조절 */
+  border-radius: 15px; 
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+}
+
+.banner-msg {
+  font-family: 'Jua', sans-serif;
+  font-size: 1.2rem;
+  color: #ff69b4; 
+  margin-top: 10px;
+}
