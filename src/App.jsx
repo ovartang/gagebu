@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import appIcon from "../icon.png"; // 아이콘 불러오기
+import appIcon from "../icon.png"; // 상단 아이콘용
+import happyMe from "../icon2.png"; // ⭐ 하단 캐릭터 배너용 (방금 만든 거!)
 
 function App() {
   const today = new Date();
@@ -87,9 +88,6 @@ function App() {
 
   return (
     <div className="container">
-      {/* 아이콘 확인용 (선택사항: 화면 구석에 작게 표시하고 싶을 때 사용) */}
-      {/* <img src={appIcon} style={{width: '20px'}} /> */}
-      
       <div className="header">
         <button className="nav-btn" onClick={() => changeMonth(-1)}>◀</button>
         <h2>{currentYear}년 {currentMonth + 1}월 가계부</h2>
@@ -118,6 +116,12 @@ function App() {
         <div>수익: <span className="income">{totalIn}</span></div>
         <div>지출: <span className="expense">{totalOut}</span></div>
         <button className="backup-btn" onClick={exportToCSV}>💾 백업</button>
+      </div>
+
+      {/* ⭐ 하단 캐릭터 배너 추가 부분 */}
+      <div className="character-banner">
+        <img src={happyMe} alt="행복한 캐릭터" className="banner-img" />
+        <p className="banner-msg">부자 가즈아~! 🚀</p>
       </div>
 
       {selectedDate && (
