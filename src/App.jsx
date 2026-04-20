@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import appIcon from "./icon.png"; // 아이콘 불러오기
+import appIcon from "../icon.png"; // 아이콘 불러오기
 
 function App() {
   const today = new Date();
