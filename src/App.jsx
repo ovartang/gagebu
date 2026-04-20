@@ -1,12 +1,6 @@
-// App.jsx 맨 위쪽에 추가
 import React, { useState, useEffect } from "react";
 import "./App.css";
-
-// --- 아이콘 이미지 불러오기 (파일 이름에 맞게 고치세요) ---
-import appIcon from "./icon.png"; // 컴퓨터에 저장한 파일명 그대로!
-
-import { useState, useEffect } from "react";
-import "./App.css";
+import appIcon from "./icon.png"; // 아이콘 불러오기
 
 function App() {
   const today = new Date();
@@ -27,20 +21,16 @@ function App() {
     localStorage.setItem("gagebu-data", JSON.stringify(data));
   }, [data]);
 
-  // --- CSV 내보내기 기능 추가 ---
   const exportToCSV = () => {
-    // 1. 데이터 헤더 설정
-    let csvContent = "\uFEFF"; // 한글 깨짐 방지용 코드
+    let csvContent = "\uFEFF"; 
     csvContent += "날짜,구분,내용,금액\n";
 
-    // 2. 전체 데이터를 돌면서 한 줄씩 생성
     Object.keys(data).sort().forEach((dateKey) => {
       data[dateKey].forEach((item) => {
         csvContent += `${dateKey},${item.type},${item.memo},${item.amount}\n`;
       });
     });
 
-    // 3. 파일 다운로드 로직
     const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
@@ -64,7 +54,7 @@ function App() {
 
   const handleSave = () => {
     if (!memo || !amount) return alert("내용과 금액을 입력해주세요!");
-    const dateKey = `${currentYear}-${currentMonth + 1}-${selectedDate}일`; // 보기 편하게 날짜 형식 수정
+    const dateKey = `${currentYear}-${currentMonth + 1}-${selectedDate}일`;
     const newItem = { type, memo, amount: Number(amount) };
     const updatedDayData = data[dateKey] ? [...data[dateKey], newItem] : [newItem];
     setData({ ...data, [dateKey]: updatedDayData });
@@ -97,6 +87,9 @@ function App() {
 
   return (
     <div className="container">
+      {/* 아이콘 확인용 (선택사항: 화면 구석에 작게 표시하고 싶을 때 사용) */}
+      {/* <img src={appIcon} style={{width: '20px'}} /> */}
+      
       <div className="header">
         <button className="nav-btn" onClick={() => changeMonth(-1)}>◀</button>
         <h2>{currentYear}년 {currentMonth + 1}월 가계부</h2>
