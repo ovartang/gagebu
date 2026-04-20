@@ -1,3 +1,10 @@
+// App.jsx 맨 위쪽에 추가
+import React, { useState, useEffect } from "react";
+import "./App.css";
+
+// --- 아이콘 이미지 불러오기 (파일 이름에 맞게 고치세요) ---
+import appIcon from "./icon.png"; // 컴퓨터에 저장한 파일명 그대로!
+
 import { useState, useEffect } from "react";
 import "./App.css";
 
