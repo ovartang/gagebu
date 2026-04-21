@@ -250,3 +250,40 @@ body {
   color: #ff69b4; 
   margin-top: 10px;
 }
+
+/* --- 이 부분부터 끝까지 복사해서 맨 밑에 붙여넣으세요 --- */
+
+/* 1. 개별 내역 한 줄 설정 */
+.item {
+  display: flex;          /* 가로로 나열 */
+  justify-content: flex-start; /* 왼쪽부터 채움 */
+  align-items: center;    /* 세로 중앙 맞춤 */
+  padding: 10px 5px;
+  border-bottom: 1px solid #f9f9f9;
+  font-size: 14px;
+}
+
+/* 2. 품목 이름 (왼쪽 공간 다 쓰기) */
+.item span:nth-child(1) {
+  flex: 1;                /* 남은 공간을 혼자 다 차지해서 금액을 오른쪽으로 밀어냄 */
+  text-align: left;       /* 글자는 왼쪽 정렬 */
+  white-space: nowrap;    /* 줄바꿈 방지 */
+  overflow: hidden;       /* 넘치는 글자 숨김 */
+  text-overflow: ellipsis; /* 너무 길면 ... 처리 */
+}
+
+/* 3. 금액 (너비 고정해서 줄 맞추기) */
+.item span:nth-child(2) {
+  width: 70px;            /* 금액 자리를 딱 70px로 고정! */
+  text-align: right;      /* 숫자는 오른쪽 정렬 */
+  font-weight: bold;
+  margin-right: 5px;      /* 삭제 버튼과 약간 띄우기 */
+}
+
+/* 4. 삭제 버튼 크기 유지 */
+.del-btn {
+  flex-shrink: 0;         /* 공간 좁아져도 버튼 안 찌그러지게 */
+  width: 20px !important;
+  height: 20px !important;
+  line-height: 18px;      /* x 표시 중앙 맞춤 */
+}
