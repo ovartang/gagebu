@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import appIcon from "../icon.png"; 
-import happyMe from "../icon2.png"; 
+import appIcon from "../icon.png"; // 상단 아이콘용
+import happyMe from "../icon2.png"; // ⭐ 하단 캐릭터 배너용 (방금 만든 거!)
 
 function App() {
   const today = new Date();
@@ -105,19 +105,20 @@ function App() {
           return (
             <div key={i} className={`day ${d === null ? "empty" : ""} ${isToday ? "today" : ""}`} onClick={() => d && setSelectedDate(d)}>
               <div className="date">{d}</div>
-              {dayIn > 0 && <div className="income">+{dayIn.toLocaleString()}</div>}
-              {dayOut > 0 && <div className="expense">-{dayOut.toLocaleString()}</div>}
+              {dayIn > 0 && <div className="income">+{dayIn}</div>}
+              {dayOut > 0 && <div className="expense">-{dayOut}</div>}
             </div>
           );
         })}
       </div>
 
       <div className="summary">
-        <div>수익: <span className="income">{totalIn.toLocaleString()}</span></div>
-        <div>지출: <span className="expense">{totalOut.toLocaleString()}</span></div>
+        <div>수익: <span className="income">{totalIn}</span></div>
+        <div>지출: <span className="expense">{totalOut}</span></div>
         <button className="backup-btn" onClick={exportToCSV}>💾 백업</button>
       </div>
 
+      {/* ⭐ 하단 캐릭터 배너 추가 부분 */}
       <div className="character-banner">
         <img src={happyMe} alt="행복한 캐릭터" className="banner-img" />
         <p className="banner-msg">부자 가즈아~! 🚀</p>
@@ -132,24 +133,19 @@ function App() {
                 <option value="지출">지출</option>
                 <option value="수익">수익</option>
               </select>
-              <input placeholder="내용" value={memo} onChange={(e) => setMemo(e.target.value)} />
+              <input placeholder="내용 (예: 점심)" value={memo} onChange={(e) => setMemo(e.target.value)} />
               <input type="number" placeholder="금액" value={amount} onChange={(e) => setAmount(e.target.value)} />
               <button className="save-btn" onClick={handleSave}>추가</button>
             </div>
-            
-            {/* ⭐ 정렬된 아이템 리스트 부분 */}
             <div className="item-list">
               {(data[`${currentYear}-${currentMonth + 1}-${selectedDate}일`] || []).map((item, idx) => (
                 <div key={idx} className="item">
-                  <span className="item-memo">{item.memo}</span>
-                  <span className={`item-amount ${item.type === "수익" ? "income" : "expense"}`}>
-                    {item.type === "수익" ? "+" : "-"}{item.amount.toLocaleString()}
-                  </span>
+                  <span>{item.memo}</span>
+                  <span className={item.type === "수익" ? "income" : "expense"}>{item.type === "수익" ? "+" : "-"}{item.amount}</span>
                   <button className="del-btn" onClick={() => deleteItem(`${currentYear}-${currentMonth + 1}-${selectedDate}일`, idx)}>x</button>
                 </div>
               ))}
             </div>
-            
             <button className="close-btn" onClick={() => setSelectedDate(null)}>닫기</button>
           </div>
         </div>
@@ -157,5 +153,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
